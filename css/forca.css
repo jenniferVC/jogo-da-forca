@@ -65,11 +65,10 @@ body {
   font-weight: 900;
 }
 
-.teclas>button:disabled{
-  cursor:not-allowed;
+.teclas > button:disabled {
+  cursor: not-allowed;
 }
 
-/*efeito de zoom dos botões ao passar o mouse*/
 .teclas > button:hover {
   transform: scale(1.3);
 }
@@ -130,11 +129,10 @@ body {
 }
 
 @media (min-width: 769px) {
-
   .teclas > button {
     width: 68px;
     height: 68px;
-    font-size:2em;
+    font-size: 2em;
   }
 
   #palavra-secreta {

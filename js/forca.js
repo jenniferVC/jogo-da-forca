@@ -231,7 +231,6 @@ function montarPalavraNaTela() {
     // É necessário um laço de repetição para exibir os traços da palavra-secreta
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (listaDinamica[i] == undefined) {
-            //O conjunto de código que a listaDinamica está recebendo corresponde a espaços no HTML
             listaDinamica[i] = "&nbsp";
             palavraTela.innerHTML = palavraTela.innerHTML + "<div class='letras'>" + listaDinamica[i] + "</div>";
         }
@@ -243,6 +242,7 @@ function montarPalavraNaTela() {
 
 function verificaLetraEscolhida(letra) {
     document.getElementById("tecla-" + letra).disabled = true;
+
     if (tentativas > 0) {
         mudarStyleLetra("tecla-" + letra);
         comparaListas(letra);
@@ -257,13 +257,14 @@ function mudarStyleLetra(tecla) {
 
 function comparaListas(letra) {
     const pos = palavraSecretaSorteada.indexOf(letra);
+
     if (pos < 0) {
         tentativas--;
         carregaImagemForca();
 
-        if (tentativas == 0) { 
-            abreModal("OPS!","Não foi dessa vez ... A palavra secreta era <br>"+palavraSecretaSorteada);
-         }
+        if (tentativas == 0) {
+            abreModal("OPS!", "Não foi dessa vez ... A palavra secreta era <br>" + palavraSecretaSorteada);
+        }
     }
     else {
         for (i = 0; i < palavraSecretaSorteada.length; i++) {
@@ -271,14 +272,10 @@ function comparaListas(letra) {
                 listaDinamica[i] = letra;
             }
         }
-
-        /* const indexen = palavraSecretaSorteada.findIndex(value=>value==letra);
-         if(indexen>0){
-             listaDinamica[indexen]=letra;
-         }*/
     }
 
     let vitoria = true;
+
     for (i = 0; i < palavraSecretaSorteada.length; i++) {
         if (palavraSecretaSorteada[i] != listaDinamica[i]) {
             vitoria = false;
@@ -286,9 +283,7 @@ function comparaListas(letra) {
     }
 
     if (vitoria) {
-        abreModal("PARABÉNS!","Você venceu ..." );
-
-        //TODO: mensagem na tela
+        abreModal("PARABÉNS!", "Você venceu ...");
         tentativa = 0;
     }
 }
@@ -319,11 +314,11 @@ function carregaImagemForca() {
     }
 }
 
-function abreModal(titulo,mensagem) {
+function abreModal(titulo, mensagem) {
     let modalTitulo = document.getElementById("exampleModalLabel");
     modalTitulo.innerText = titulo;
 
-    let modalBody= document.getElementById("modalBody");
+    let modalBody = document.getElementById("modalBody");
     modalBody.innerHTML = mensagem;
 
     $("#myModal").modal({
@@ -332,6 +327,7 @@ function abreModal(titulo,mensagem) {
 }
 
 let btnReiniciar = document.querySelector("#btnReiniciar");
-btnReiniciar.addEventListener("click",function(){
+
+btnReiniciar.addEventListener("click", function () {
     location.reload();
 });
